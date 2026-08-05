@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card shadow">
+
+        <div class="card-body">
+
+            <h2 class="text-success">
+                Welcome {{ player["name"] }}
+            </h2>
+
+            <hr>
+
+            <div class="row text-center">
+
+                <div class="col-md-3">
+
+                    <h1>⭐</h1>
+
+                    <h4>{{ player["xp"] }}</h4>
+
+                    <p>XP</p>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <h1>🪙</h1>
+
+                    <h4>{{ player["coins"] }}</h4>
+
+                    <p>Coins</p>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <h1>🏆</h1>
+
+                    <h4>{{ player["score"] }}</h4>
+
+                    <p>Score</p>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <h1>🚀</h1>
+
+                    <h4>{{ player["level"] }}</h4>
+
+                    <p>Level</p>
+
+                </div>
+
+            </div>
+
+            <hr>
+
+            <p><strong>Employee ID:</strong> {{ player["employee_id"] }}</p>
+
+            <p><strong>Department:</strong> {{ player["department"] }}</p>
+
+            <br>
+
+           <div class="mt-4 text-center">
+
+    <a href="/quiz" class="btn btn-success m-2">
+
+        🎮 Play Quiz
+
+    </a>
+
+    <a href="/leaderboard" class="btn btn-primary m-2">
+
+        🏆 Leaderboard
+
+    </a>
+    <a href="/admin" class="btn btn-warning m-2">
+    👨‍💼 Admin Panel
+</a>
+
+    <a href="/logout" class="btn btn-danger m-2">
+
+        🚪 Logout
+
+    </a>
+
+</div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

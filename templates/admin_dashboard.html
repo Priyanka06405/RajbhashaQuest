@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+<h2 class="text-warning">
+
+👨‍💼 Admin Dashboard
+
+</h2>
+
+<hr>
+
+<div class="row">
+
+<div class="col-md-6">
+
+<div class="card shadow">
+
+<div class="card-body text-center">
+
+<h1>{{ players }}</h1>
+
+<h4>Total Players</h4>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-6">
+
+<div class="card shadow">
+
+<div class="card-body text-center">
+
+<h1>{{ questions }}</h1>
+
+<h4>Total Questions</h4>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<br>
+
+<div class="row mt-4">
+
+    <div class="col-md-3">
+
+        <a href="/questions" class="btn btn-success w-100">
+
+            ➕ Manage Questions
+
+        </a>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <a href="/leaderboard" class="btn btn-primary w-100">
+
+            🏆 Leaderboard
+
+        </a>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <a href="/dashboard" class="btn btn-info w-100">
+
+            👤 Player Dashboard
+
+        </a>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <a href="/logout" class="btn btn-danger w-100">
+
+            🚪 Logout
+
+        </a>
+
+    </div>
+
+</div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h2 class="text-success">
+
+        📚 Question Bank
+
+    </h2>
+
+    <hr>
+
+    <a href="/add_question" class="btn btn-success mb-3">
+
+        ➕ Add Question
+
+    </a>
+
+    <table class="table table-bordered table-striped table-hover">
+
+        <thead class="table-success">
+
+            <tr>
+
+                <th>ID</th>
+
+                <th width="45%">Question</th>
+
+                <th>Answer</th>
+
+                <th>Category</th>
+
+                <th>Action</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+        {% for q in questions %}
+
+        <tr>
+
+            <td>{{ q["id"] }}</td>
+
+            <td>{{ q["question"] }}</td>
+
+            <td>{{ q["answer"] }}</td>
+
+            <td>{{ q["category"] }}</td>
+
+            <td>
+
+                <a href="/edit_question/{{ q['id'] }}"
+                   class="btn btn-warning btn-sm">
+
+                    Edit
+
+                </a>
+
+                <a href="/delete_question/{{ q['id'] }}"
+                   class="btn btn-danger btn-sm">
+
+                    Delete
+
+                </a>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}
