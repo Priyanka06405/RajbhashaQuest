@@ -8,7 +8,131 @@
 
         <div class="col-md-8">
 
+            <div class="card shadow-lg">{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-8">
+
             <div class="card shadow-lg">
+
+                <!-- Header -->
+                <div class="card-header bg-success text-white text-center">
+                    <h3 class="mb-0">🎮 Rajbhasha Quiz</h3>
+                </div>
+
+                <div class="card-body">
+
+                    <!-- Question Number -->
+                    <div class="text-center mb-3">
+                        <strong>
+                            Question {{ current }} of {{ total }}
+                        </strong>
+                    </div>
+
+                    <!-- Timer -->
+                    <div class="alert alert-warning text-center">
+                        ⏱️ Time Remaining:
+                        <strong id="timer">30</strong> seconds
+                    </div>
+
+                    <!-- Question -->
+                    <h4 class="mb-4">
+                        {{ question["question"] }}
+                    </h4>
+
+                    <!-- Answer Form -->
+                    <form
+                        action="/check_answer"
+                        method="POST"
+                        id="quizForm">
+
+                        <!-- Question ID -->
+                        <input
+                            type="hidden"
+                            name="question_id"
+                            value="{{ question['id'] }}"
+                        >
+
+                        <!-- Shuffled Options -->
+                        {% for option in options %}
+
+                        <div class="form-check mb-3">
+
+                            <input
+                                class="form-check-input"
+                                type="radio"
+                                name="answer"
+                                value="{{ option }}"
+                                id="option{{ loop.index }}"
+                                {% if loop.first %}required{% endif %}
+                            >
+
+                            <label
+                                class="form-check-label"
+                                for="option{{ loop.index }}"
+                            >
+                                <strong>{{ loop.index | string | replace("1", "A") | replace("2", "B") | replace("3", "C") | replace("4", "D") }}.</strong>
+                                {{ option }}
+                            </label>
+
+                        </div>
+
+                        {% endfor %}
+
+                        <!-- Submit Button -->
+                        <div class="text-center mt-4">
+
+                            <button
+                                type="submit"
+                                class="btn btn-success btn-lg"
+                            >
+                                Submit Answer
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Timer -->
+<script>
+
+    let timeLeft = 30;
+
+    const timer = setInterval(function () {
+
+        document.getElementById("timer").innerText = timeLeft;
+
+        timeLeft--;
+
+        if (timeLeft < 0) {
+
+            clearInterval(timer);
+
+            document.getElementById("quizForm").submit();
+
+        }
+
+    }, 1000);
+
+</script>
+
+{% endblock %}
 
                 <div class="card-header bg-success text-white text-center">
                     <h3 class="mb-0">🎮 Rajbhasha Quiz</h3>
