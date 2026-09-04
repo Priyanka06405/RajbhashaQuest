@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h2 class="text-success">
+        👥 Player Management
+    </h2>
+
+    <hr>
+
+    <div class="table-responsive">
+
+        <table class="table table-bordered table-striped table-hover">
+
+            <thead class="table-success">
+
+                <tr>
+
+                    <th>Rank</th>
+                    <th>Employee ID</th>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>Score</th>
+                    <th>XP</th>
+                    <th>Coins</th>
+                    <th>Level</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+            {% for player in players %}
+
+                <tr>
+
+                    <td>
+                        {{ loop.index }}
+                    </td>
+
+                    <td>
+                        {{ player["employee_id"] }}
+                    </td>
+
+                    <td>
+                        {{ player["name"] }}
+                    </td>
+
+                    <td>
+                        {{ player["department"] }}
+                    </td>
+
+                    <td>
+                        {{ player["score"] }}
+                    </td>
+
+                    <td>
+                        {{ player["xp"] }}
+                    </td>
+
+                    <td>
+                        {{ player["coins"] }}
+                    </td>
+
+                    <td>
+                        {{ player["level"] }}
+                    </td>
+
+                </tr>
+
+            {% else %}
+
+                <tr>
+
+                    <td colspan="8" class="text-center">
+
+                        No players registered yet.
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+    <br>
+
+    <a
+        href="/admin/dashboard"
+        class="btn btn-secondary">
+
+        ← Back to Admin Dashboard
+
+    </a>
+
+</div>
+
+{% endblock %}
