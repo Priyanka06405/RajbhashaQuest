@@ -8,26 +8,15 @@
 
         <div class="col-md-8">
 
-            <div class="card shadow-lg">{% extends "base.html" %}
-
-{% block content %}
-
-<div class="container mt-5">
-
-    <div class="row justify-content-center">
-
-        <div class="col-md-8">
-
             <div class="card shadow-lg">
 
-                <!-- Header -->
                 <div class="card-header bg-success text-white text-center">
                     <h3 class="mb-0">🎮 Rajbhasha Quiz</h3>
                 </div>
 
                 <div class="card-body">
 
-                    <!-- Question Number -->
+                    <!-- Question Counter -->
                     <div class="text-center mb-3">
                         <strong>
                             Question {{ current }} of {{ total }}
@@ -49,16 +38,16 @@
                     <form
                         action="/check_answer"
                         method="POST"
-                        id="quizForm">
+                        id="quizForm"
+                    >
 
-                        <!-- Question ID -->
                         <input
                             type="hidden"
                             name="question_id"
                             value="{{ question['id'] }}"
                         >
 
-                        <!-- Shuffled Options -->
+                        <!-- Options -->
                         {% for option in options %}
 
                         <div class="form-check mb-3">
@@ -76,8 +65,19 @@
                                 class="form-check-label"
                                 for="option{{ loop.index }}"
                             >
-                                <strong>{{ loop.index | string | replace("1", "A") | replace("2", "B") | replace("3", "C") | replace("4", "D") }}.</strong>
+
+                                {% if loop.index == 1 %}
+                                    <strong>A.</strong>
+                                {% elif loop.index == 2 %}
+                                    <strong>B.</strong>
+                                {% elif loop.index == 3 %}
+                                    <strong>C.</strong>
+                                {% else %}
+                                    <strong>D.</strong>
+                                {% endif %}
+
                                 {{ option }}
+
                             </label>
 
                         </div>
@@ -108,153 +108,6 @@
 
 </div>
 
-
-<!-- Timer -->
-<script>
-
-    let timeLeft = 30;
-
-    const timer = setInterval(function () {
-
-        document.getElementById("timer").innerText = timeLeft;
-
-        timeLeft--;
-
-        if (timeLeft < 0) {
-
-            clearInterval(timer);
-
-            document.getElementById("quizForm").submit();
-
-        }
-
-    }, 1000);
-
-</script>
-
-{% endblock %}
-
-                <div class="card-header bg-success text-white text-center">
-                    <h3 class="mb-0">🎮 Rajbhasha Quiz</h3>
-                </div>
-
-                <div class="card-body">
-
-                    <!-- Quiz Progress -->
-                    <div class="text-center mb-3">
-                        <strong>
-                            Question {{ current }} of {{ total }}
-                        </strong>
-                    </div>
-
-                    <!-- Timer -->
-                    <div class="alert alert-warning text-center">
-                        ⏱️ Time Remaining:
-                        <strong id="timer">30</strong> seconds
-                    </div>
-
-                    <!-- Question -->
-                    <h4 class="mb-4">
-                        {{ question["question"] }}
-                    </h4>
-
-                    <!-- Answer Form -->
-                    <form
-                        action="/check_answer"
-                        method="POST"
-                        id="quizForm">
-
-                        <!-- Question ID -->
-                        <input
-                            type="hidden"
-                            name="question_id"
-                            value="{{ question['id'] }}">
-
-                        <!-- Option 1 -->
-                        <div class="form-check mb-3">
-
-                            <input
-                                class="form-check-input"
-                                type="radio"
-                                name="answer"
-                                value="{{ question['option1'] }}"
-                                required>
-
-                            <label class="form-check-label">
-                                {{ question["option1"] }}
-                            </label>
-
-                        </div>
-
-                        <!-- Option 2 -->
-                        <div class="form-check mb-3">
-
-                            <input
-                                class="form-check-input"
-                                type="radio"
-                                name="answer"
-                                value="{{ question['option2'] }}">
-
-                            <label class="form-check-label">
-                                {{ question["option2"] }}
-                            </label>
-
-                        </div>
-
-                        <!-- Option 3 -->
-                        <div class="form-check mb-3">
-
-                            <input
-                                class="form-check-input"
-                                type="radio"
-                                name="answer"
-                                value="{{ question['option3'] }}">
-
-                            <label class="form-check-label">
-                                {{ question["option3"] }}
-                            </label>
-
-                        </div>
-
-                        <!-- Option 4 -->
-                        <div class="form-check mb-4">
-
-                            <input
-                                class="form-check-input"
-                                type="radio"
-                                name="answer"
-                                value="{{ question['option4'] }}">
-
-                            <label class="form-check-label">
-                                {{ question["option4"] }}
-                            </label>
-
-                        </div>
-
-                        <!-- Submit Button -->
-                        <div class="text-center">
-
-                            <button
-                                type="submit"
-                                class="btn btn-success btn-lg">
-
-                                Submit Answer
-
-                            </button>
-
-                        </div>
-
-                    </form>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
 
 <!-- Timer Script -->
 <script>
