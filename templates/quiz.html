@@ -10,27 +10,43 @@
 
             <div class="card shadow-lg">
 
-                <div class="card-header bg-success text-white">
-
+                <div class="card-header bg-success text-white text-center">
                     <h3 class="mb-0">🎮 Rajbhasha Quiz</h3>
-
                 </div>
 
                 <div class="card-body">
 
+                    <!-- Quiz Progress -->
+                    <div class="text-center mb-3">
+                        <strong>
+                            Question {{ current }} of {{ total }}
+                        </strong>
+                    </div>
+
+                    <!-- Timer -->
+                    <div class="alert alert-warning text-center">
+                        ⏱️ Time Remaining:
+                        <strong id="timer">30</strong> seconds
+                    </div>
+
+                    <!-- Question -->
                     <h4 class="mb-4">
-
                         {{ question["question"] }}
-
                     </h4>
 
-                    <form action="/check_answer" method="POST">
+                    <!-- Answer Form -->
+                    <form
+                        action="/check_answer"
+                        method="POST"
+                        id="quizForm">
 
+                        <!-- Question ID -->
                         <input
                             type="hidden"
                             name="question_id"
                             value="{{ question['id'] }}">
 
+                        <!-- Option 1 -->
                         <div class="form-check mb-3">
 
                             <input
@@ -41,13 +57,12 @@
                                 required>
 
                             <label class="form-check-label">
-
                                 {{ question["option1"] }}
-
                             </label>
 
                         </div>
 
+                        <!-- Option 2 -->
                         <div class="form-check mb-3">
 
                             <input
@@ -57,13 +72,12 @@
                                 value="{{ question['option2'] }}">
 
                             <label class="form-check-label">
-
                                 {{ question["option2"] }}
-
                             </label>
 
                         </div>
 
+                        <!-- Option 3 -->
                         <div class="form-check mb-3">
 
                             <input
@@ -73,13 +87,12 @@
                                 value="{{ question['option3'] }}">
 
                             <label class="form-check-label">
-
                                 {{ question["option3"] }}
-
                             </label>
 
                         </div>
 
+                        <!-- Option 4 -->
                         <div class="form-check mb-4">
 
                             <input
@@ -89,20 +102,23 @@
                                 value="{{ question['option4'] }}">
 
                             <label class="form-check-label">
-
                                 {{ question["option4"] }}
-
                             </label>
 
                         </div>
 
-                        <button
-                            type="submit"
-                            class="btn btn-success">
+                        <!-- Submit Button -->
+                        <div class="text-center">
 
-                            Submit Answer
+                            <button
+                                type="submit"
+                                class="btn btn-success btn-lg">
 
-                        </button>
+                                Submit Answer
+
+                            </button>
+
+                        </div>
 
                     </form>
 
@@ -115,5 +131,28 @@
     </div>
 
 </div>
+
+<!-- Timer Script -->
+<script>
+
+    let timeLeft = 30;
+
+    const timer = setInterval(function () {
+
+        document.getElementById("timer").innerText = timeLeft;
+
+        timeLeft--;
+
+        if (timeLeft < 0) {
+
+            clearInterval(timer);
+
+            document.getElementById("quizForm").submit();
+
+        }
+
+    }, 1000);
+
+</script>
 
 {% endblock %}
