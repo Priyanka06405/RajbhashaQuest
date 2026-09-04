@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h2 class="text-success">
+        📊 Admin Reports
+    </h2>
+
+    <hr>
+
+    <div class="row text-center">
+
+        <div class="col-md-3 mb-3">
+
+            <div class="card shadow p-4">
+
+                <h1>{{ total_players }}</h1>
+
+                <h5>Total Players</h5>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-3 mb-3">
+
+            <div class="card shadow p-4">
+
+                <h1>{{ total_questions }}</h1>
+
+                <h5>Total Questions</h5>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-3 mb-3">
+
+            <div class="card shadow p-4">
+
+                <h1>{{ total_score }}</h1>
+
+                <h5>Total Score</h5>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-3 mb-3">
+
+            <div class="card shadow p-4">
+
+                <h1>{{ total_coins }}</h1>
+
+                <h5>Total Coins</h5>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <hr class="mt-5">
+
+
+    <h3 class="mb-3">
+        🏆 Top 10 Players
+    </h3>
+
+
+    <div class="table-responsive">
+
+        <table class="table table-bordered table-striped">
+
+            <thead class="table-success">
+
+                <tr>
+
+                    <th>Rank</th>
+
+                    <th>Name</th>
+
+                    <th>Employee ID</th>
+
+                    <th>Department</th>
+
+                    <th>Score</th>
+
+                    <th>XP</th>
+
+                    <th>Coins</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+            {% for player in top_players %}
+
+                <tr>
+
+                    <td>
+                        {{ loop.index }}
+                    </td>
+
+                    <td>
+                        {{ player["name"] }}
+                    </td>
+
+                    <td>
+                        {{ player["employee_id"] }}
+                    </td>
+
+                    <td>
+                        {{ player["department"] }}
+                    </td>
+
+                    <td>
+                        {{ player["score"] }}
+                    </td>
+
+                    <td>
+                        {{ player["xp"] }}
+                    </td>
+
+                    <td>
+                        {{ player["coins"] }}
+                    </td>
+
+                </tr>
+
+            {% else %}
+
+                <tr>
+
+                    <td colspan="7"
+                        class="text-center">
+
+                        No players yet.
+
+                    </td>
+
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <br>
+
+
+    <a
+        href="/admin/dashboard"
+        class="btn btn-secondary">
+
+        ← Back to Admin Dashboard
+
+    </a>
+
+</div>
+
+{% endblock %}
