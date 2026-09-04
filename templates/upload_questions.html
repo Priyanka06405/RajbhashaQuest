@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-success text-white">
+            <h3>📂 Excel Question Upload</h3>
+        </div>
+
+        <div class="card-body">
+
+            <p>
+                Upload multiple Rajbhasha Quest questions using an Excel file.
+            </p>
+
+            <div class="alert alert-info">
+
+                <strong>Excel format:</strong>
+
+                <br><br>
+
+                Your Excel file must have these columns in this order:
+
+                <br><br>
+
+                <strong>
+                    Question | Option1 | Option2 | Option3 | Option4 | Answer | Category
+                </strong>
+
+            </div>
+
+            {% if message %}
+
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+
+            {% endif %}
+
+            <form method="POST" enctype="multipart/form-data">
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Select Excel File
+                    </label>
+
+                    <input
+                        type="file"
+                        name="file"
+                        class="form-control"
+                        accept=".xlsx"
+                        required>
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="btn btn-success">
+
+                    📤 Upload Questions
+
+                </button>
+
+                <a
+                    href="/admin/dashboard"
+                    class="btn btn-secondary">
+
+                    ← Back to Admin
+
+                </a>
+
+            </form>
+
+            <hr class="mt-4">
+
+            <h5>Example Excel Format</h5>
+
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Question</th>
+                            <th>Option1</th>
+                            <th>Option2</th>
+                            <th>Option3</th>
+                            <th>Option4</th>
+                            <th>Answer</th>
+                            <th>Category</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>
+                                Computer का हिन्दी शब्द क्या है?
+                            </td>
+
+                            <td>संगणक</td>
+
+                            <td>पत्र</td>
+
+                            <td>बैठक</td>
+
+                            <td>कर्मचारी</td>
+
+                            <td>संगणक</td>
+
+                            <td>Rajbhasha</td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
